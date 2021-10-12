@@ -33,6 +33,17 @@
 		<servlet-name>UserController</servlet-name>
 		<url-pattern>/user</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GuestbookController</servlet-name>
+		<servlet-class>com.douzone.mysite.controller.GuestbookController
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GuestbookController</servlet-name>
+		<url-pattern>/gb</url-pattern>
+	</servlet-mapping>
+	
 
 
 
