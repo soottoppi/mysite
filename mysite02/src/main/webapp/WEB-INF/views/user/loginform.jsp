@@ -4,18 +4,18 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!doctype html>
 <%
-	String result = (String)request.getAttribute("result");
+String result = (String) request.getAttribute("result");
 %>
 <html>
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/user.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp"></jsp:include>
-
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="user">
 				<form id="login-form" name="loginform" method="post"
@@ -25,19 +25,19 @@
 						class="block-label">패스워드</label> <input name="password"
 						type="password" value="">
 					<%
-						if("fail".equals(result)){
+					if ("fail".equals(result)) {
 					%>
 					<p>로그인이 실패 했습니다.</p>
 					<%
-						}
+					}
 					%>
-					
+
 					<input type="submit" value="로그인">
 				</form>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/navigation.jsp"></jsp:include>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>

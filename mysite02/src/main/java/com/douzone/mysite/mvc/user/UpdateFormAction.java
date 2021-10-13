@@ -24,7 +24,6 @@ public class UpdateFormAction implements Action {
 			return;
 		}
 		
-		///////////////////////////////////////////////////////////
 		Long no = authUser.getNo();
 		UserVo userVo = new UserDao().findByNo(no);
 		

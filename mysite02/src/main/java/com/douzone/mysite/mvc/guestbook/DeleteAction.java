@@ -18,7 +18,7 @@ public class DeleteAction implements Action {
 		String password = request.getParameter("password");
 
 		new GuestbookDao().delete(no, password);
-		MvcUtil.redirect("/mysite02/gb?a=list", request, response);
+		MvcUtil.redirect("/mysite02/guestbook", request, response);
 
 	}
 

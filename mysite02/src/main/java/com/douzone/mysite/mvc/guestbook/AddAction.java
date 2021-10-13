@@ -27,7 +27,7 @@ public class AddAction implements Action {
 
 		new GuestbookDao().insert(vo);
 		
-		MvcUtil.redirect("/mysite02/gb?a=list", request, response);
+		MvcUtil.redirect("/mysite02/guestbook", request, response);
 
 	}
 
