@@ -4,8 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <% 
-	GuestbookDao dao = new GuestbookDao();
-	List<GuestbookVo> list = dao.findAll();
+	List<GuestbookVo> list = new GuestbookDao().findAll();
 %>
 <!DOCTYPE html>
 <html>
@@ -53,7 +52,7 @@
 								<td><a href="<%=request.getContextPath() %>/gb?a=deleteform&no=<%=vo.getNo() %>">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4><%=vo.getMessage() %><br>
+								<td colspan=4><%=vo.getMessage().replaceAll("\n", "<br>") %><br>
 								</td>
 							</tr>
 						</table> <br>
