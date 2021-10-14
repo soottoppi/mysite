@@ -1,7 +1,5 @@
 package com.douzone.mysite.mvc.guestbook;
 
-import com.douzone.mysite.mvc.user.UpdateAction;
-import com.douzone.mysite.mvc.user.UpdateFormAction;
 import com.douzone.web.mvc.Action;
 import com.douzone.web.mvc.ActionFactory;
 

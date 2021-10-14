@@ -29,33 +29,53 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
-					<tr>
-						<td>3</td>
-						<td><a href="">세 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-11 12:04:20</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="">두 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="">첫 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+					<c:set var='count' value='${fn:length(list) }' />
+					<c:set var='newline' value='\n' />
+					<c:forEach items='${list }' var='vo' varStatus='status'>
+						<tr>
+							<td>${count-status.index }</td>
+							<c:out value="${vo }"></c:out>
+							<td>
+								<a href="${pageContext.request.contextPath }/board?a=view
+								&groupNo=${vo.groupNo}
+								&orderNo=${vo.orderNo}
+								&depth=${vo.depth}
+								&userNo=${vo.userNo}">${vo.title }</a> 
+							</td>
+							<td>${vo.userName }</td>
+							<td>${vo.hit }</td>
+							<td>${vo.regDate }</td>
+							<c:if test="${authUser.no eq vo.userNo }">
+							<td><a href="${pageContext.request.contextPath }/board?a=delete" >삭제</a></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+
 				</table>
+				
+				<!-- pager 추가 -->
+				<div class="pager">
+					<ul>
+						<li><a href="">◀</a></li>
+						<li><a href="">1</a></li>
+						<li class="selected">2</li>
+						<li><a href="">3</a></li>
+						<li>4</li>
+						<li>5</li>
+						<li><a href="">▶</a></li>
+					</ul>
+				</div>					
+				<!-- pager 추가 -->
+				
 				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
+					<c:if test="${not empty authUser }">
+						<a href="${pageContext.request.contextPath }/board?a=writeform"
+							id="new-book">글쓰기</a>
+					</c:if>
+					<c:if test="${empty authUser }">
+						<a href="${pageContext.request.contextPath }/user?a=loginform"
+							id="new-book">글쓰기</a>
+					</c:if>
 				</div>
 			</div>
 		</div>

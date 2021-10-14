@@ -109,20 +109,6 @@ public class GuestbookDao {
 	
 	
 	
-	private Connection getConnection() throws SQLException {
-		Connection conn = null;
-		try {
-			// 1. JDBC Driver 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			// 2. 연결하기
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패");
-		}
-		return conn;
-	}
 
 	public boolean delete(Long no, String password) {
 		boolean result = false;	
@@ -163,5 +149,20 @@ public class GuestbookDao {
 		}
 
 		return result;
+	}
+	
+	private Connection getConnection() throws SQLException {
+		Connection conn = null;
+		try {
+			// 1. JDBC Driver 로딩
+			Class.forName("org.mariadb.jdbc.Driver");
+			
+			// 2. 연결하기
+			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+		}
+		return conn;
 	}
 }
