@@ -42,7 +42,12 @@
 								<c:if test="${vo.depth > 0 }">
 									<img src='${pageContext.servletContext.contextPath }/assets/images/reply.png' />
 								</c:if>
-								<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}">${vo.title }</a> 
+								<c:if test="${kwd != ''}"> 	
+									<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}&kwd=${kwd}">${vo.title }</a>
+								</c:if>
+								<c:if test="${kwd == ''}">
+									<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}">${vo.title }</a>
+								</c:if>
 							</td>
 							<td>${vo.userName }</td>
 							<td>${vo.hit }</td>
@@ -71,7 +76,7 @@
 								<li class="selected">${i }</li>
 							</c:if>
 							<c:if test="${currentPage != i && i <= pageCount}">
-								<li><a href="${pageContext.request.contextPath }/board?page=${i}">${i }</a></li>
+								<li><a href="${pageContext.request.contextPath }/board?page=${i}&kwd=${kwd}">${i }</a></li>
 							</c:if>
 							<c:if test="${currentPage != i && i > pageCount }">
 								<li>${i }</li>

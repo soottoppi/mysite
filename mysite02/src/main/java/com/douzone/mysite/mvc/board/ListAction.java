@@ -16,10 +16,10 @@ public class ListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean search = true;
+		boolean search = false;
 		String kwd;
-		if((kwd = request.getParameter("kwd")) == null) {
-			search = false;
+		if((kwd = request.getParameter("kwd")) != null) {
+			search = true;
 		}
 		Long currentPage;
 		if(request.getParameter("page") == null) {

@@ -18,6 +18,7 @@ public class ViewAction implements Action {
 		BoardDao boardDao = new BoardDao();
 		Long postNo = Long.parseLong(request.getParameter("postNo"));
 		Long currentPage = Long.parseLong(request.getParameter("page"));
+		String kwd = request.getParameter("kwd");
 		
 		BoardVo boardVo = boardDao.findPost(postNo);
 		
@@ -25,6 +26,7 @@ public class ViewAction implements Action {
 		
 		request.setAttribute("boardVo", boardVo);
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("kwd", kwd);
 		MvcUtil.forward("/board/view", request, response);
 	}
 

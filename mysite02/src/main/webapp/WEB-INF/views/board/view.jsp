@@ -36,9 +36,19 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?page=${currentPage}">글목록</a> 
-					<c:if test="${authUser.no eq boardVo.userNo }">
-						<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}">글수정</a>
+					<c:if test="${kwd != ''}">	
+						<a href="${pageContext.request.contextPath }/board?page=${currentPage}&kwd=${kwd}">글목록</a>
+					</c:if> 
+					 <c:if test="${kwd == ''}">
+ 						<a href="${pageContext.request.contextPath }/board?page=${currentPage}">글목록</a>
+					</c:if> 
+					<c:if test="${authUser.no == boardVo.userNo }">
+						<c:if test="${kwd != ''}"> 	
+							<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}&kwd=${kwd}">글수정</a>
+						</c:if>
+						<c:if test="${kwd == ''}"> 	
+							<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}">글수정</a>
+						</c:if>
 					</c:if>
 					<c:if test="${empty authUser }">
 						<a href="${pageContext.request.contextPath }/user?a=loginform" id="new-book">답글</a>

@@ -40,7 +40,12 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/board?a=view&postNo=${param.postNo }&page=${param.page}">취소</a> 
+						<c:if test="${kwd != ''}">
+							<a href="${pageContext.request.contextPath }/board?a=view&postNo=${param.postNo }&page=${param.page}&kwd=${param.kwd}">취소</a>
+						</c:if>
+						<c:if test="${kwd == ''}">
+							<a href="${pageContext.request.contextPath }/board?a=view&postNo=${param.postNo }&page=${param.page}">취소</a>
+						</c:if> 
 						<input type="submit" value="등록">
 					</div>
 				</form>
