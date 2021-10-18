@@ -16,24 +16,15 @@ public class ViewAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDao boardDao = new BoardDao();
-		Long groupNo = Long.parseLong(request.getParameter("groupNo"));
-		Long orderNo = Long.parseLong(request.getParameter("orderNo"));
-		Long depth = Long.parseLong(request.getParameter("depth"));
-		Long userNo = Long.parseLong(request.getParameter("userNo"));
+		Long postNo = Long.parseLong(request.getParameter("postNo"));
+		Long currentPage = Long.parseLong(request.getParameter("page"));
 		
-		
-		BoardVo boardVo = new BoardVo();
-		boardVo.setGroupNo(groupNo);
-		boardVo.setOrderNo(orderNo);
-		boardVo.setDepth(depth);
-		boardVo.setUserNo(userNo);
-		
+		BoardVo boardVo = boardDao.findPost(postNo);
 		
 		boardDao.updateHit(boardVo);
-		boardVo = boardDao.findTitleAndContents(boardVo);
-		
 		
 		request.setAttribute("boardVo", boardVo);
+		request.setAttribute("currentPage", currentPage);
 		MvcUtil.forward("/board/view", request, response);
 	}
 

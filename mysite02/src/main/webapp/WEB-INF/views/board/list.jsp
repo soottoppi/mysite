@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
 <head>
 <title>mysite</title>
@@ -16,9 +18,11 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="" method="post">
-					<input type="text" id="kwd" name="kwd" value=""> <input
-						type="submit" value="찾기">
+				<form id="search_form" action="${pageContext.servletContext.contextPath }/board" method="post">
+					<input type="hidden" name="a" value="list">
+					<input type="hidden" name="search" value="search">
+					<input type="text" id="kwd" name="kwd" value="${kwd }"> 
+					<input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
 					<tr>
@@ -33,21 +37,24 @@
 					<c:set var='newline' value='\n' />
 					<c:forEach items='${list }' var='vo' varStatus='status'>
 						<tr>
-							<td>${count-status.index }</td>
-							<c:out value="${vo }"></c:out>
-							<td>
-								<a href="${pageContext.request.contextPath }/board?a=view
-								&groupNo=${vo.groupNo}
-								&orderNo=${vo.orderNo}
-								&depth=${vo.depth}
-								&userNo=${vo.userNo}">${vo.title }</a> 
+							<td>${vo.no }</td>
+							<td style="text-align:left; padding-left:${vo.depth * 10}px" >
+								<c:if test="${vo.depth > 0 }">
+									<img src='${pageContext.servletContext.contextPath }/assets/images/reply.png' />
+								</c:if>
+								<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}">${vo.title }</a> 
 							</td>
 							<td>${vo.userName }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
-							<c:if test="${authUser.no eq vo.userNo }">
-							<td><a href="${pageContext.request.contextPath }/board?a=delete" >삭제</a></td>
-							</c:if>
+							<td>
+								<c:if test="${authUser.no eq vo.userNo }">
+									<a href="${pageContext.request.contextPath }/board?a=deleteform&postNo=${vo.no}&page=${currentPage}">
+										<img width="15px" src='${pageContext.servletContext.contextPath }/assets/images/recycle.png'/>
+									</a>
+								</c:if>
+							</td>
+							
 						</tr>
 					</c:forEach>
 
@@ -56,20 +63,31 @@
 				<!-- pager 추가 -->
 				<div class="pager">
 					<ul>
-						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
-						<li class="selected">2</li>
-						<li><a href="">3</a></li>
-						<li>4</li>
-						<li>5</li>
-						<li><a href="">▶</a></li>
+						<c:if test="${currentPage > pageBlock}">
+							<li><a href="${pageContext.request.contextPath }/board?no=${endPage - pageBlock}&page=${endPage - pageBlock}">◀</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1" varStatus="status" >
+							<c:if test="${currentPage == i }">
+								<li class="selected">${i }</li>
+							</c:if>
+							<c:if test="${currentPage != i && i <= pageCount}">
+								<li><a href="${pageContext.request.contextPath }/board?page=${i}">${i }</a></li>
+							</c:if>
+							<c:if test="${currentPage != i && i > pageCount }">
+								<li>${i }</li>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${endPage < pageCount}">
+							<li><a href="${pageContext.request.contextPath }/board?no=${endPage + 1 }&page=${endPage + 1}">▶</a></li>
+						</c:if>
 					</ul>
 				</div>					
 				<!-- pager 추가 -->
 				
 				<div class="bottom">
 					<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board?a=writeform"
+						<a href="${pageContext.request.contextPath }/board?a=writeform&page=${currentPage}"
 							id="new-book">글쓰기</a>
 					</c:if>
 					<c:if test="${empty authUser }">

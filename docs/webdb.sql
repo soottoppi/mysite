@@ -6,7 +6,7 @@ insert into user values(null, '둘리', 'dooly@mgail.com', '1234', 'male', now()
 
 -- select01
 select no, name from user where email='dooly@mgail.com' and password='1234';
-
+select no, name from user where no = 10;
 -- select02
 select * from user;
 

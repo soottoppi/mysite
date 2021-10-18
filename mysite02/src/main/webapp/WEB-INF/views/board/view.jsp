@@ -36,14 +36,16 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board">글목록</a> 
-					<c:if test="${authUser.no eq param.userNo }">
-						<a href="${pageContext.request.contextPath }/board?a=modifyform
-						&groupNo=${param.groupNo}
-						&orderNo=${param.orderNo }
-						&depth=${param.depth }">글수정</a>
+					<a href="${pageContext.request.contextPath }/board?page=${currentPage}">글목록</a> 
+					<c:if test="${authUser.no eq boardVo.userNo }">
+						<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}">글수정</a>
 					</c:if>
-					<a href="${pageContext.request.contextPath }/board?a=replyform" id="new-book">답글</a>
+					<c:if test="${empty authUser }">
+						<a href="${pageContext.request.contextPath }/user?a=loginform" id="new-book">답글</a>
+					</c:if>
+					<c:if test="${not empty authUser }">
+						<a href="${pageContext.request.contextPath }/board?a=writeform&postNo=${boardVo.no}&page=${currentPage}" id="new-book">답글</a>
+					</c:if>
 				</div>
 				
 			</div>

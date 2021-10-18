@@ -17,13 +17,11 @@ public class WriteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// title, contents, hit, reg_date, group_no, order_no, depth, user_no,
-		// title, contests 가져온다
-		// hit는 1로 고정(list에서 게시물 클릭 시 마다 1증가)
-		// reg_date는 now()로 고정
-		// group_no는 최초 입력 시 null 이므로 1로 지정, max(group_no) + 1 해서 넣어준다
-		// order_no, depth는 0, 0으로 고정
-		// user_no 는 현재 세션의 user_no를 가져온다
+		BoardDao boardDao = new BoardDao();
+		BoardVo postVo = null;
+		BoardVo childVo = new BoardVo();
+		boolean reply = false;
+		Long postNo = null;
 		
 		HttpSession session = request.getSession();
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -31,24 +29,47 @@ public class WriteAction implements Action {
 			MvcUtil.redirect(request.getContextPath() + "/board", request, response);
 			return;
 		}
-		System.out.println();
+
+		// 답글에 필요한 정보
+		if(!request.getParameter("postNo").isEmpty()) {
+			postNo = Long.parseLong(request.getParameter("postNo"));
+			// 부모 글의 정보
+			postVo = boardDao.findPost(postNo);
+			reply = true;
+		}
 		
-		BoardVo boardVo = new BoardVo();
-		BoardDao boardDao = new BoardDao();
-		
+		Long currentPage = Long.parseLong(request.getParameter("page"));
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
+		Long groupNo;
+		Long orderNo;
+		Long depth;
 		Long userNo = authUser.getNo();
-		Long groupNo = boardDao.findGroupNo() + 1L;
 		
-		boardVo.setTitle(title);
-		boardVo.setContents(contents);
-		boardVo.setGroupNo(groupNo);
-		boardVo.setUserNo(userNo);
+		// 답글인 경우
+		if(reply) {
+			groupNo = postVo.getGroupNo();
+			orderNo = postVo.getOrderNo() +1L;
+			depth = postVo.getDepth() +1L;
+		} else {
+			groupNo = boardDao.findMaxGroupNo() + 1L;
+			orderNo = 1L;
+			depth = 0L;
+		}
 		
-		boardDao.insert(boardVo);
+		childVo.setTitle(title);
+		childVo.setContents(contents);
+		childVo.setUserNo(userNo);
+		childVo.setGroupNo(groupNo);
+		childVo.setOrderNo(orderNo);
+		childVo.setDepth(depth);
 		
-		MvcUtil.redirect("/mysite02/board", request, response);
+		if(reply) {
+			boardDao.updateOrderNo(childVo);
+		}
+		boardDao.insert(childVo);
+		
+		MvcUtil.redirect(request.getContextPath() + "/board", request, response);
 	}
 
 }

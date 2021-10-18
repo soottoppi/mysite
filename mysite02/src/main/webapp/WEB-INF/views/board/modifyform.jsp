@@ -15,10 +15,10 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board?a=modify
-						&groupNo=${param.groupNo}
-						&orderNo=${param.orderNo}
-						&depth=${param.depth}">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board">
+					<input type="hidden" name="a" value="modify">
+					<input type="hidden" name="page" value="${currentPage}">
+					<input type="hidden" name="postNo" value="${param.postNo}">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글수정</th>
@@ -33,10 +33,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/board?a=view
-						&groupNo=${param.groupNo}
-						&orderNo=${param.orderNo}
-						&depth=${param.depth}">취소</a> <input type="submit" value="수정">
+						<a href="${pageContext.request.contextPath }/board?a=view&postNo=${boardVo.no}&page=${currentPage}">취소</a> <input type="submit" value="수정">
 					</div>
 				</form>
 			</div>
