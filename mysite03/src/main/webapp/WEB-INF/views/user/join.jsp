@@ -17,13 +17,11 @@
 		<div id="content">
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user?a=join">
-					<label class="block-label" for="name">이름</label> <input id="name"
-						name="name" type="text" value=""> <label
-						class="block-label" for="email">이메일</label> <input id="email"
-						name="email" type="text" value=""> <input type="button"
-						value="id 중복체크"> <label class="block-label">패스워드</label> <input
-						name="password" type="password" value="">
+				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user/join">
+					<label class="block-label" for="name">이름</label> <input id="name" name="name" type="text" value=""> 
+					<label class="block-label" for="email">이메일</label> <input id="email" name="email" type="text" value=""> 
+						<input type="button"	value="id 중복체크"> 
+						<label class="block-label">패스워드</label> <input name="password" type="password" value="">
 
 					<fieldset>
 						<legend>성별</legend>
