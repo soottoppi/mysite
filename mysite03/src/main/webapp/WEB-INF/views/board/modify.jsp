@@ -15,10 +15,9 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board">
-					<input type="hidden" name="a" value="modify">
-					<input type="hidden" name="page" value="${currentPage}">
-					<input type="hidden" name="postNo" value="${param.postNo}">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/modify">
+					<input type="hidden" name="page" value="${param.page}">
+					<input type="hidden" name="postNo" value="${boardVo.no}">
 					<input type="hidden" name="kwd" value="${kwd}">
 					<table class="tbl-ex">
 						<tr>
@@ -34,13 +33,8 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<c:if test="${kwd != ''}">
-							<a href="${pageContext.request.contextPath }/board?a=view&postNo=${boardVo.no}&page=${currentPage}&kwd=${kwd}">취소</a> <input type="submit" value="수정">
-						</c:if>
-						<c:if test="${kwd == ''}">
-							<a href="${pageContext.request.contextPath }/board?a=view&postNo=${boardVo.no}&page=${currentPage}">취소</a> <input type="submit" value="수정">
-						</c:if>
-
+						<a href="${pageContext.request.contextPath }/board/view/${boardVo.no}/${currentPage}">취소</a> 
+						<input type="submit" value="수정">
 					</div>
 				</form>
 			</div>

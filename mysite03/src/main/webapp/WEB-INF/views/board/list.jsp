@@ -1,10 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 
 <html>
 <head>
@@ -42,12 +40,7 @@
 								<c:if test="${vo.depth > 0 }">
 									<img src='${pageContext.servletContext.contextPath }/assets/images/reply.png' />
 								</c:if>
-								<c:if test="${kwd != ''}"> 	
-									<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}&kwd=${kwd}">${vo.title }</a>
-								</c:if>
-								<c:if test="${kwd == ''}">
-									<a  href="${pageContext.request.contextPath }/board?a=view&postNo=${vo.no}&page=${currentPage}">${vo.title }</a>
-								</c:if>
+								<a  href="${pageContext.request.contextPath }/board/view/${vo.no}?page=${currentPage}">${vo.title }</a>
 							</td>
 							<td>${vo.userName }</td>
 							<td>${vo.hit }</td>
@@ -91,14 +84,8 @@
 				<!-- pager 추가 -->
 				
 				<div class="bottom">
-					<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board?a=writeform&page=${currentPage}"
-							id="new-book">글쓰기</a>
-					</c:if>
-					<c:if test="${empty authUser }">
-						<a href="${pageContext.request.contextPath }/user?a=loginform"
-							id="new-book">글쓰기</a>
-					</c:if>
+					<a href="${pageContext.request.contextPath }/board/write?page=${currentPage}" id="new-book">글쓰기</a>
+					
 				</div>
 			</div>
 		</div>

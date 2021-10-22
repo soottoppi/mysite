@@ -36,25 +36,16 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<c:if test="${kwd != ''}">	
-						<a href="${pageContext.request.contextPath }/board?page=${currentPage}&kwd=${kwd}">글목록</a>
-					</c:if> 
-					 <c:if test="${kwd == ''}">
- 						<a href="${pageContext.request.contextPath }/board?page=${currentPage}">글목록</a>
-					</c:if> 
+						<a href="${pageContext.request.contextPath }/board/${currentPage}">글목록</a>
 					<c:if test="${authUser.no == boardVo.userNo }">
-						<c:if test="${kwd != ''}"> 	
-							<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}&kwd=${kwd}">글수정</a>
-						</c:if>
-						<c:if test="${kwd == ''}"> 	
-							<a href="${pageContext.request.contextPath }/board?a=modifyform&postNo=${boardVo.no}&page=${currentPage}">글수정</a>
-						</c:if>
+						<a href="${pageContext.request.contextPath }/board/modify/${boardVo.no}?page=${param.page}">글수정</a>
 					</c:if>
+					
 					<c:if test="${empty authUser }">
-						<a href="${pageContext.request.contextPath }/user?a=loginform" id="new-book">답글</a>
+						<a href="${pageContext.request.contextPath }/user/login" id="new-book">답글</a>
 					</c:if>
 					<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board?a=writeform&postNo=${boardVo.no}&page=${currentPage}" id="new-book">답글</a>
+						<a href="${pageContext.request.contextPath }/board/reply/${boardVo.no}?page=${param.page}" id="new-book">답글</a>
 					</c:if>
 				</div>
 				

@@ -22,8 +22,6 @@ public class ModifyFormAction implements Action {
 		
 		BoardVo boardVo = boardDao.findPost(postNo);
 		
-		boardDao.updateHit(boardVo);
-		
 		request.setAttribute("boardVo", boardVo);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("kwd", kwd);

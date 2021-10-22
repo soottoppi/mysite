@@ -1,5 +1,7 @@
 package com.douzone.mysite.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class UserService {
 	public UserVo getUser(Long no) {
 		return userRepository.findByNo(no);
 	}
-	
+
 	public UserVo getUser(String email, String password) {
 		return userRepository.findByEmailAndPassword(email, password);
 	}
