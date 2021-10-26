@@ -17,7 +17,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/reply">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/write">
 					<input type="hidden" name="postNo" value="${postNo}">
 					<input type="hidden" name="page" value="${param.page}">
 					<input type="hidden" name="groupNo" value="${boardVo.groupNo}">

@@ -17,6 +17,20 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+	
+		<!-- jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+	
+	
 		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -100,6 +114,21 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- validation -->
+		<dependency>
+		   <groupId>javax.validation</groupId>
+		   <artifactId>validation-api</artifactId>
+		   <version>2.0.1.Final</version>
+		</dependency>
+		
+		<!-- validation(hibernate) -->
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>6.1.0.Final</version>
+		</dependency>
+		
 
 		<!-- MariaDB JDBC Driver -->
 		<dependency>

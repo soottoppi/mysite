@@ -16,15 +16,14 @@
 
 		<div id="content">
 			<div id="board">
-				<form style="text-align: center; height: 100px" method="post" action = "${pageContext.request.contextPath }/board">
-					<input type="hidden" name="a" value="delete">
-					<input type='hidden' name="postNo" value="${param.postNo }">
+				<form style="text-align: center; height: 100px" method="post" action = "${pageContext.request.contextPath }/board/delete">
+					<input type='hidden' name="postNo" value="${postNo }">
 					<input type='hidden' name="page" value="${param.page }">
 					<label>비밀번호</label> <input	type="password" name="password"> 
 					<input type="submit" value="확인">
 				</form>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board" id="new-book">취소</a>
+					<a href="${pageContext.request.contextPath }/board?page=${param.page}" id="new-book">취소</a>
 				</div>
 				
 			</div>

@@ -33,6 +33,14 @@
 		]]>
 	</select>
 	
+	<select id="findByEmail" parameterType="String" resultType="uservo">
+		<![CDATA[
+			select no, name, email, gender 
+				from user 
+			where email = #{email}
+		]]>
+	</select>
+	
 	<select id="delete" parameterType="map">
 		<![CDATA[
 			delete from guestbook

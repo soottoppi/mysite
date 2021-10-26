@@ -30,7 +30,6 @@ public class BoardService {
 		return vo;
 	}
 
-
 	public Long findMaxGroupNo() {
 		return boardRepository.findMaxGroupNo();
 	}
@@ -50,20 +49,22 @@ public class BoardService {
 	}
 
 	public boolean addPost(BoardVo boardVo) {
-		boardVo.setGroupNo(boardRepository.findMaxGroupNo() + 1L);
-		boardVo.setOrderNo(1L);
-		boardVo.setDepth(0L);
-		
+		// 답글인 경우
+		if(boardVo.getGroupNo() != null) {
+			boardVo.setOrderNo(boardVo.getOrderNo() + 1L);
+			boardVo.setDepth(boardVo.getDepth() + 1L);
+			boardRepository.updateOrderNo(boardVo);
+			
+		} else {
+			boardVo.setGroupNo(findMaxGroupNo() + 1L);
+			boardVo.setOrderNo(1L);
+			boardVo.setDepth(0L);
+		}
 		return boardRepository.insert(boardVo);
-		
 	}
 
-	public boolean addReplyPost(BoardVo boardVo) {
-		boardVo.setOrderNo(boardVo.getOrderNo() + 1L);
-		boardVo.setDepth(boardVo.getDepth() + 1L);
-		boardRepository.updateOrderNo(boardVo);
-		return boardRepository.insert(boardVo);
+	public boolean delete(Long postNo, String password) {
+		return boardRepository.delete(postNo, password);
 	}
-	
 	
 }

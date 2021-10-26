@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<h1>Exception Occurs</h1>
-	<pre style='color: red'>
+<body bgcolor='rgb(53,53,53)'>
+	<h1 style='color:white'>Exception Occurs</h1>
+	<pre style='color: white'>
 		${exception }
 	</pre>
 </body>

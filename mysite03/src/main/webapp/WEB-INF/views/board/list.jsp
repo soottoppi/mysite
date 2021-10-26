@@ -47,7 +47,7 @@
 							<td>${vo.regDate }</td>
 							<td>
 								<c:if test="${authUser.no eq vo.userNo }">
-									<a href="${pageContext.request.contextPath }/board?a=deleteform&postNo=${vo.no}&page=${currentPage}">
+									<a href="${pageContext.request.contextPath }/board/delete/${vo.no}?page=${currentPage}">
 										<img width="15px" src='${pageContext.servletContext.contextPath }/assets/images/recycle.png'/>
 									</a>
 								</c:if>
@@ -62,14 +62,14 @@
 				<div class="pager">
 					<ul>
 						<c:if test="${currentPage > pageBlock}">
-							<li><a href="${pageContext.request.contextPath }/board?no=${endPage - pageBlock}&page=${endPage - pageBlock}">◀</a></li>
+							<li><a href="${pageContext.request.contextPath }/board?page=${endPage - pageBlock}">◀</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1" varStatus="status" >
 							<c:if test="${currentPage == i }">
 								<li class="selected">${i }</li>
 							</c:if>
 							<c:if test="${currentPage != i && i <= pageCount}">
-								<li><a href="${pageContext.request.contextPath }/board?page=${i}&kwd=${kwd}">${i }</a></li>
+								<li><a href="${pageContext.request.contextPath }/board?page=${i}">${i }</a></li>
 							</c:if>
 							<c:if test="${currentPage != i && i > pageCount }">
 								<li>${i }</li>
@@ -77,7 +77,7 @@
 						</c:forEach>
 						
 						<c:if test="${endPage < pageCount}">
-							<li><a href="${pageContext.request.contextPath }/board?no=${endPage + 1 }&page=${endPage + 1}">▶</a></li>
+							<li><a href="${pageContext.request.contextPath }/board?page=${endPage + 1}">▶</a></li>
 						</c:if>
 					</ul>
 				</div>					
