@@ -12,10 +12,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MyBatisConfig {
-	
-	// Bean 생성 메소드
+
 	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext applicationContext) throws Exception {
+	public SqlSessionFactory sqlSessionFactory(
+			DataSource dataSource, 
+			ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource);
 		sqlSessionFactory.setConfigLocation(applicationContext.getResource("classpath:com/douzone/mysite/config/app/mybatis/configuration.xml"));

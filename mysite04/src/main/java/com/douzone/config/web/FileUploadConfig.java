@@ -13,10 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @PropertySource("classpath:com/douzone/mysite/config/web/fileupload.properties")
 public class FileUploadConfig extends WebMvcConfigurerAdapter {
-	
 	@Autowired
 	private Environment env;
-
+	
 	@Bean
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -30,8 +29,12 @@ public class FileUploadConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
-		.addResourceHandler(env.getProperty("fileupload.resourceMapping"))
-		.addResourceLocations(env.getProperty("fileupload.uploadLocation"));
+			.addResourceHandler(env.getProperty("fileupload.resourceMapping"))
+			.addResourceLocations("file:" + env.getProperty("fileupload.uploadLocation"));
+		
+		registry
+		.addResourceHandler(env.getProperty("fileupload.resourceMappingAdmin"))
+		.addResourceLocations("file:" + env.getProperty("fileupload.uploadLocationAdmin"));
 	}
 	
 	
