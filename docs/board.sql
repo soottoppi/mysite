@@ -10,6 +10,8 @@ select title, contents from board where group_no = 1 and order_no = 1 and depth 
 
 select * from board order by no desc, order_no ASC;
 
+select * from site;
+
 select b.no, title, contents, hit, reg_date, group_no, order_no, depth, user_no, name 
 from board b, user u
 where b.user_no = u.no and title like '%3%'
@@ -28,7 +30,7 @@ insert into board values(null, '1번 제목입니다', '1번 내용입니다', 1
 delete from board;
 
 delete b from board b join user u on b.user_no = u.no
-where b.no = 93 and u.password = 123;
+where b.no > 116 and u.password = 123;
 
 delete b
 from board b join user a on b.user_no=a.no
@@ -44,8 +46,16 @@ SELECT *
 	) 
 WHERE PAGE = {페이지번호};
 
+select * from board order by no desc;
+select * from gallery;
 
+update site
+set title = '하이', welcome='호잇', profile = , description = ;
 
-
+select * from site;
+desc site;
 
 select count(*) from board;
+
+update site 
+				set profile='/admin/images/reply.png';
