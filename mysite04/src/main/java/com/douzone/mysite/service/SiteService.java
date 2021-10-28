@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,7 +27,12 @@ public class SiteService {
 	@Autowired
 	SiteRepository siteRepository;
 	
+	@Autowired
+	private Environment env;
+	
 	public String saveImg(MultipartFile file) throws GalleryServiceException{
+		
+		
 		try {
 			File uploadDirectory = new File(SAVE_PATH);
 			if(!uploadDirectory.exists()) {
