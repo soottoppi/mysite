@@ -14,17 +14,17 @@ import com.douzone.mysite.vo.UserVo;
 
 @Repository
 public class UserRepository {	
-	@Autowired
-	private DataSource dataSource;
-	
-	@Autowired
-	private SqlSession sqlSession;
-	public UserVo findByEmailAndPassword(String email, String password) throws UserRepositoryException {
-	Map<String, String> map = new HashMap<>();
-	map.put("e", email);
-	map.put("p", password);
-	
-	return sqlSession.selectOne("user.findByEmailAndPassword", map);
+		@Autowired
+		private DataSource dataSource;
+		
+		@Autowired
+		private SqlSession sqlSession;
+		public UserVo findByEmailAndPassword(String email, String password) throws UserRepositoryException {
+		Map<String, String> map = new HashMap<>();
+		map.put("e", email);
+		map.put("p", password);
+		
+		return sqlSession.selectOne("user.findByEmailAndPassword", map);
 		
 	}
 	
