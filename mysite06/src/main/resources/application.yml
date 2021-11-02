@@ -84,7 +84,6 @@ server:
 mybatis:
    config-location: classpath:mybatis/configuration.xml
 
-
 ---
 # logging
 logging:
