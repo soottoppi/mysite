@@ -20,8 +20,6 @@ import com.douzone.mysite.vo.SiteVo;
 public class SiteService {
 	private static String SAVE_PATH = "/upload-mysite/admin";
 	private static String URL_BASE = "/admin/images";
-	@Autowired
-	ServletContext servletContext;
 	
 	@Autowired
 	SiteRepository siteRepository;
