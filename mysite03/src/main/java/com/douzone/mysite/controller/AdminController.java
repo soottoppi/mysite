@@ -39,14 +39,13 @@ public class AdminController {
 	@Auth(role = "ADMIN")
 	@RequestMapping(value = "/main/update", method = RequestMethod.POST)
 	public String update(@RequestParam("file") MultipartFile file, SiteVo siteVo) {
-
 		try {
 			String url = siteService.saveImg(file);
 			siteVo.setProfile(url);
 		} catch (GalleryServiceException e) {
-			System.out.println("하이");
+			System.out.println("사진이 선택되지 않았습니다.");
 		}
-
+		System.out.println(siteVo);
 		siteService.update(siteVo);
 		servletContext.setAttribute("site", siteVo);
 		

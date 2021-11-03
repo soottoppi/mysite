@@ -30,12 +30,13 @@ public class BoardController {
 		Long findPageCount = null;
 		
 		findPageCount = boardService.findPageCount();
-			
-		Long pageCount = findPageCount / 10 + (findPageCount % 10 == 0 ? 0 : 1);
+		Long pageCount = findPageCount / 10 + ((findPageCount % 10 )== 0 ? 0L: 1L);
+		if(pageCount == 0) {
+			pageCount = 1L;
+		}
 		if(currentPage > pageCount) {
 			currentPage = pageCount;
-		}
-		
+		} 
 		Long pageBlock = 5L;
 		Long startPage = ((currentPage - 1L) / pageBlock) * pageBlock + 1L;
 		Long endPage = startPage + pageBlock - 1L;

@@ -76,7 +76,12 @@ public class SiteService {
 	}
 
 	public void update(SiteVo siteVo) {
-		siteRepository.update(siteVo);
+		if(siteRepository.findAdminMain() == true){
+			siteRepository.update(siteVo);	
+		} else {
+			siteRepository.insert(siteVo);
+		}
+		
 	}
 	
 }

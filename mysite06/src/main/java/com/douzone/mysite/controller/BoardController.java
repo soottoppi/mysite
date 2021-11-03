@@ -42,6 +42,9 @@ public class BoardController {
 		
 		
 		Long pageNoForRow = (currentPage - 1) * 10;
+		if(pageNoForRow < 0) {
+			pageNoForRow = 0L;
+		}
 		model.addAttribute("list", boardService.findAll(pageNoForRow));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageBlock", pageBlock);

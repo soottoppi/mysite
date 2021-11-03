@@ -38,7 +38,7 @@ public class SiteVo {
 	}
 	@Override
 	public String toString() {
-		return "AdminVo [no=" + no + ", title=" + title + ", welcome=" + welcome + ", profile=" + profile
+		return "SiteVo [no=" + no + ", title=" + title + ", welcome=" + welcome + ", profile=" + profile
 				+ ", description=" + description + "]";
 	}
 	

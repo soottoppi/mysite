@@ -18,7 +18,7 @@
 	
 	<select id="findMaxGroupNo" resultType="Long">
 		<![CDATA[
-			select max(group_no) from board
+			select ifnull(max(group_no), 0) from board;
 		]]>	
 	</select>
 
@@ -32,7 +32,7 @@
 	
 	<select id="findPageCount" resultType="Long">
 		<![CDATA[
-			select count(*) from board		
+			select count(*) from board
 		]]>		
 	</select>	
 		

@@ -12,5 +12,18 @@
 			update site set title=#{title }, welcome=#{welcome }, profile=#{profile }, description=#{description }
 		]]>
 	</update>
+	
+	<select id="findAdminMain" resultType="Long">
+		<![CDATA[
+			select count(*)  from site
+		]]>
+	</select>
+	
+	<insert id="insert" parameterType="sitevo">
+			<![CDATA[
+				insert into site values(null, #{title }, #{welcome }, #{profile }, #{description });
+			]]>
+	
+	</insert>
 
 </mapper>

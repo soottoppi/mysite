@@ -19,5 +19,17 @@ public class SiteRepository {
 		int count = sqlSession.update("site.update", siteVo);
 		return count == 1;
 	}
+
+	public boolean findAdminMain() {
+		if((Long)sqlSession.selectOne("site.findAdminMain") > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void insert(SiteVo siteVo) {
+		sqlSession.insert("site.insert", siteVo);
+	}
 	
 }
