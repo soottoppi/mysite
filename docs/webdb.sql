@@ -5,6 +5,12 @@ desc user;
 insert into user values(null, '관리자', 'admin@mysite.com', '123', 'male', now(), 'ADMIN');
 insert into user values(null, '관리자', 'duwjs@gmail.com', '123', 'male', now(), 'ADMIN');
 
+select no, name, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, message 
+		   			from guestbook 
+                    
+	   			order by reg_date desc
+                limit ,5;
+                
 select * from emaillist;
 select * from site;
 
@@ -58,6 +64,14 @@ select * from user;
 insert into user values(null, '관리자', 'admin@mysite.com', '123', 'male', now(), 'ADMIN');
 
 desc site;
+
+
+select * from guestbook;
+
+select no, name, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate, message 
+		   			from guestbook 
+	   			order by no desc;
+delete from guestbook;
 
 select * from site;
 

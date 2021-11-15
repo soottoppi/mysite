@@ -11,7 +11,6 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	
-
 	<!-- auto proxy -->
 	<aop:aspectj-autoproxy />
 	
@@ -26,13 +25,14 @@
 			    </property>
 			</bean>
 			
+			<!-- JSON message converter -->
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-			   <property name="supportedMediaTypes">
-			       <list>
-			            <value>application/json; charset=UTF-8</value>
-			        </list>
-			   </property>
-			</bean>
+			    <property name="supportedMediaTypes">
+				<list>
+					<value>application/json; charset=UTF-8</value>
+				</list>
+			    </property>
+			</bean>	
 		</mvc:message-converters>
 		
 		<mvc:argument-resolvers>

@@ -21,7 +21,7 @@ public class GuestbookController {
 		model.addAttribute("list", guestbookService.list());
 		return "guestbook/list";
 	}
-
+	
 	@RequestMapping(value = "/delete/{no}", method = RequestMethod.GET)
 	public String delete(@PathVariable("no") Long no, Model model) {
 		model.addAttribute("no", no);
@@ -39,5 +39,10 @@ public class GuestbookController {
 		guestbookService.add(vo);
 		return "redirect:/guestbook";
 	}
-
+	
+	@RequestMapping("/spa")
+	public String spa() {
+		return "guestbook/index-spa";
+	}
+	
 }

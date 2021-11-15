@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	pageContext.setAttribute("newline", "\n");
+pageContext.setAttribute("newline", "\n");
 %>
 <!DOCTYPE html>
 <html>
@@ -39,11 +39,10 @@
 						</tr>
 					</table>
 				</form>
-
 				<ul>
 					<c:set var='count' value='${fn:length(list) }' />
 					<c:set var='newline' value='\n' />
-					
+
 					<c:forEach items='${list }' var='vo' varStatus='status'>
 						<li>
 							<table>
@@ -51,15 +50,15 @@
 									<td>[${count-status.index }]</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="${pageContext.request.contextPath }/guestbook/delete/${vo.no } ">삭제</a></td>
+									<td><a
+										href="${pageContext.request.contextPath }/guestbook/delete/${vo.no } ">삭제</a></td>
 								</tr>
 								<tr>
-									<td colspan=4>
-									${fn:replace(vo.message, newline, "<br/>") }
+									<td colspan=4>${fn:replace(vo.message, newline, "<br/>") }
 									</td>
 								</tr>
 							</table> <br>
-	
+
 						</li>
 					</c:forEach>
 				</ul>

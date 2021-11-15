@@ -25,8 +25,12 @@ public class GuestbookRepository {
 	}
 
 	public boolean delete(GuestbookVo vo) {
-		int count = sqlSession.delete("guestbook.delete", vo);
-		return count == 1;
+		return sqlSession.delete("guestbook.delete", vo) == 1;
 	}
+
+	public List<GuestbookVo> findWithNo(Long no) {
+		return sqlSession.selectList("guestbook.findWithNo", no);
+	}
+
 	
 }
